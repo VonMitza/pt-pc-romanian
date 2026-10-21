@@ -1,7 +1,7 @@
-# Releases the Romanian translation: Actions > Release > Run workflow with a tag v<port version>-ro<n> (v1.0.3-ro1).
+# Releases the Romanian translation: Actions > Release > Run workflow with a tag v<port version>-ro<n> (v1.0.7-ro1).
 # It checks out LoreanXavier/pt-pc at v<port version>, applies traducere/romana-<port version>.patch (the language wiring),
-# copies traducere/romanian_text.h over (the texts, the one file to edit for corrections), builds pt.exe and publishes a
-# Release with only pt.exe and CITESTE-MA.txt. The release text is .github/romana/release.md.
+# copies traducere/romanian_text.h (the texts) and traducere/ron.txt (Coffee with Lisa) over, builds pt.exe and publishes a
+# Release with only pt.exe, lisa_date/text/ron.txt and CITESTE-MA.txt. The release text is .github/romana/release.md.
 name: Release
 
 on:
@@ -10,7 +10,7 @@ on:
       tag:
         description: 'Tag-ul Release-ului (v<versiune joc>-ro<n>)'
         required: true
-        default: 'v1.0.3-ro2'
+        default: 'v1.0.7-ro1'
       publica:
         description: 'Publică Release-ul (debifat: doar compilează, pentru test)'
         type: boolean
@@ -52,6 +52,22 @@ jobs:
           git apply --whitespace=nowarn $patch
           if ($LASTEXITCODE) { throw "the patch does not apply to v${{ steps.version.outputs.version }}" }
           Copy-Item ..\traducere-repo\traducere\romanian_text.h src\engine\core\romanian_text.h -Force
+          if (Test-Path assets\lisa_date\text) { Copy-Item ..\traducere-repo\traducere\ron.txt assets\lisa_date\text\ron.txt -Force }
+
+      # The port's public source lacks three files its Windows build declares (tools/nr_native_companion_probe.cpp, the DLSS 5
+      # companion pt-native-nvngx.dll; tools/dx12/spirv_to_hlsl.cpp, the DXIL shader translator; tests/unicode_paths_test.rc).
+      # None of them goes into pt.exe: the companion DLL and the .dxil shaders come with the official install, which the
+      # translation goes over. Stand-ins let CMake configure; the DXIL shaders are not rebuilt (PT_D3D12_SHADERS=OFF) and only
+      # pt.exe is shipped.
+      - name: Stand-ins for files missing upstream
+        shell: pwsh
+        working-directory: pt-pc
+        run: |
+          if (-not (Test-Path tools\nr_native_companion_probe.cpp)) {
+            Set-Content tools\nr_native_companion_probe.cpp 'extern "C" __declspec(dllexport) int pt_companion_stand_in() { return 0; }'
+          }
+          if (-not (Test-Path tests\unicode_paths_test.rc)) { New-Item -ItemType File tests\unicode_paths_test.rc | Out-Null }
+          "PT_D3D12_SHADERS=$((Test-Path tools\dx12\spirv_to_hlsl.cpp) ? 'ON' : 'OFF')" >> $env:GITHUB_ENV
 
       - name: Vulkan SDK
         shell: pwsh
@@ -74,8 +90,24 @@ jobs:
         working-directory: pt-pc
         run: |
           set "PATH=C:\Program Files\LLVM\bin;%PATH%"
-          cmake --preset release -B build\release || exit /b 1
-          cmake --build build\release --target pt_release || exit /b 1
+          cmake --preset release -B build\release -DPT_D3D12_SHADERS=%PT_D3D12_SHADERS% > ..\build.log 2>&1 || (type ..\build.log & exit /b 1)
+          cmake --build build\release --target pt_release >> ..\build.log 2>&1 || (type ..\build.log & exit /b 1)
+
+      - name: Diagnose
+        if: failure()
+        shell: pwsh
+        run: |
+          if (-not (Test-Path build.log)) { exit 0 }
+          $lines = Get-Content build.log
+          $tail = ($lines | Select-Object -Last 30) -join ' | '
+          Write-Output "::error::TAIL: $($tail.Substring([Math]::Max(0, $tail.Length - 3800)))"
+          $hits = @()
+          for ($i = 0; $i -lt $lines.Count; $i++) {
+            if ($lines[$i] -match 'CMake Error|FATAL|FAILED:|: error|error:|fatal error') {
+              $hits += ($lines[$i..[Math]::Min($lines.Count-1,$i+6)] -join ' | ')
+            }
+          }
+          foreach ($b in ($hits | Select-Object -First 8)) { Write-Output "::error::$($b.Substring(0, [Math]::Min(3500, $b.Length)))" }
 
       - name: Package
         shell: pwsh
@@ -84,6 +116,10 @@ jobs:
           $zip = "${{ steps.version.outputs.zip }}"
           New-Item -ItemType Directory out\pkg | Out-Null
           Copy-Item pt-pc\build\release\pt_release.exe out\pkg\pt.exe
+          if (Test-Path pt-pc\assets\lisa_date\text\ron.txt) {
+            New-Item -ItemType Directory out\pkg\lisa_date\text | Out-Null
+            Copy-Item pt-pc\assets\lisa_date\text\ron.txt out\pkg\lisa_date\text\ron.txt
+          }
           $sha = (Get-FileHash out\pkg\pt.exe -Algorithm SHA256).Hash.ToLower()
           $utf8 = New-Object System.Text.UTF8Encoding $false
           function Fill($text) {

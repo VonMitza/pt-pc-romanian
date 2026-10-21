@@ -1,0 +1,162 @@
+# Coffee with Lisa, Romanian (limba română). key = text
+name_lisa = Lisa
+name_you = Tu
+name_glitch = Lisa
+ui_auto = Auto
+ui_skip = Sari
+ui_affection = Afecțiune
+ui_leave_hold = Ține apăsat pentru a părăsi întâlnirea
+title_1 = Partea 1: Cafea neagră
+title_2 = Partea 2: Două lingurițe de zahăr
+title_3 = Partea 3: Ultima comandă
+ending_good = FINAL BUN: Ne vedem în bucla următoare
+ending_bad = FINAL RĂU: Cafea rece
+ending_true = FINALUL ADEVĂRAT: 204863
+
+intro_01 = (Holul a dispărut. Aici miroase a cafea. A cafea și a ceva foarte vechi.)
+intro_02 = (Aia e... Lisa? De ce zâmbește? De ce STĂ JOS?)
+
+s1_01 = Oh! Chiar ai intrat. Nu intră nimeni niciodată. Toți trec pe lângă mine pe hol. Iar și iar și iar.
+s1_02 = Stai jos, stai jos! Am făcut cafea. Nu știam cum o bei, așa că am făcut-o cum o beau eu.
+s1_03 = Neagră. Ca holul la trei dimineața.
+c1_a = Neagră e perfectă.
+c1_a_r = Vezi? Deja suntem compatibili. Am știut din prima zi în care ai fugit de mine.
+c1_b = Pot să primesc puțin lapte?
+c1_b_r1 = Laptele e în frigider.
+c1_b_r2 = ...Nu deschide frigiderul.
+c1_c = Aud cumva un radio?
+c1_c_r1 = Care radio? Nu e niciun radio. N-a existat niciodată vreun radio.
+c1_c_r2 = Bea-ți cafeaua.
+
+s1_04 = Deci. Observi ceva diferit la mine?
+c2_a = Părul tău arată senzațional.
+c2_a_r = Serios? Îmi ia o veșnicie. Nimeni nu știe cât. Nici măcar eu.
+c2_b = Tu... nu mai vii spre mine, pentru prima dată.
+c2_b_r = Stau jos! M-a învățat o prietenă. Locuiește într-o cadă. O fată drăguță. Nu prea vorbăreață.
+c2_c = L-ai pieptănat cu furculița?
+c2_c_r = O să mă prefac că n-ai zis asta. Mă pricep foarte bine să mă prefac. Întreabă holul.
+
+s1_05 = Nu prea ies din casă. Doctorul meu zice că „tehnic, nu sunt vie”, ceea ce mi se pare un pic cam răutăcios.
+s1_06 = Dar tu? Ce faci toată ziua?
+c3_a = Merg pe un hol. Apoi o iau de la capăt.
+c3_a_r = Și eu! Avem atâtea în comun!
+c3_b = Colecționez bucățele de hârtie.
+c3_b_r = Un colecționar! O ai pe aia cu fața mea? Arăt atât de bine în ea.
+c3_c = Strig „Jack” într-un microfon până sună un telefon.
+c3_c_r = ...Sunt sigură că e ceva foarte normal de unde vii tu.
+
+s1_07 = E plăcut. Normal. Doi oameni care stau jos și beau cafea. Nimeni nu se târăște pe tavan.
+c4_a = Se vorbește foarte ușor cu tine.
+c4_a_r = Încetează. O să-mi facă capul chestia aia.
+c4_b = Tu te târăști pe tavan?
+c4_b_r = Doar în weekend.
+c4_c = Pot să-mi mut scaunul un pic mai departe?
+c4_c_r = ...Oh. Sigur. E prins în șuruburi de podea, dar sigur.
+
+s2_01 = Pot să-ți spun un secret? Când am emoții, capul meu face un pic...
+s2_02 = ...asta.
+c5_a = Sincer, e cam drăguț.
+c5_a_r = Nimeni nu i-a zis niciodată drăguț. De obicei țipă și scapă lanterna.
+c5_b = Te rog, nu mai face niciodată asta.
+c5_b_r = Nu mă pot abține! E ca sughițul. Sughiț bântuit.
+c5_c = De-aia bați în ușa băii?
+c5_c_r = Ușa aia a început.
+
+s2_03 = Bine, un joc! Numărul meu preferat e 2-0-4-8-6-3. Ghicește de ce.
+c6_a = E ziua ta?
+c6_a_r = Nu, prostuțule. E ora. Uită-te la ceas. ...Unde a dispărut ceasul?
+c6_b = 204863 e și numărul meu preferat.
+c6_b_r = ...Nimeni nu ține minte numărul. Nimeni.
+c6_c = E un număr tare ciudat.
+c6_c_r = Zice cel care își numără pașii.
+
+s2_04 = Îți plac copiii?
+c7_a = Sigur, în cantități rezonabile.
+c7_a_r = Rezonabil e bine. Îmi place rezonabil.
+c7_b = Am găsit odată unul într-o chiuvetă.
+c7_b_r = Ah, acolo îi țin. E foarte igienic.
+c7_c = Nu prea.
+c7_c_r = Chiuveta a auzit asta.
+
+s2_05 = Bine. Întrebare grea. Dacă aș fi o lanternă, m-ai ține aproape în întuneric?
+c8_a = Nu te-aș lăsa niciodată din mână.
+c8_a_r = Nici când pâlpâi? ...Ești dulce. Nimeni nu-mi spune niciodată că sunt dulce.
+c8_b = Doar până se termină bateriile.
+c8_b_r = Lanternele din casa asta n-au baterii. Au sentimente.
+c8_c = Tu ai fi cea care mă orbește.
+c8_c_r = E cel mai frumos mod în care mi-a spus cineva vreodată „fața ta mă doare la ochi”.
+
+s2_06 = Mă distrez. Te distrezi? Clipește de două ori dacă te distrezi.
+s2_07 = ...N-ai clipit. Nu clipești niciodată. Interesant.
+
+s3_01 = Se face târziu. Aici e mereu târziu. E târziu de foarte, foarte mult timp.
+s3_02 = Toată lumea pleacă pe ușa de la capătul holului. Și apoi intră înapoi imediat.
+c9_a = Mai rămân puțin.
+c9_a_r = Știam că o să rămâi.
+c9_b = Ar trebui să mă întorc pe hol.
+c9_b_r = Holul tot o să fie acolo. Holul e mereu tot acolo.
+c9_c = Am senzația că am mai fost aici.
+c9_c_r = Zici asta de fiecare dată.
+
+s3_03 = Pot să te întreb ceva? Cum mă cheamă?
+c10_a = Lisa.
+c10_a_r = Ți-ai amintit! Nimeni nu-și amintește. Toți îmi zic doar „chestia din spatele tău”.
+c10_b = Ocho?
+c10_b_r = Așa mi-au zis programatorii. Nu vorbim despre programatori.
+c10_c = Femeia de pe hol?
+c10_c_r = ...Ăsta e jobul meu. Nu numele meu.
+
+s3_04 = Promite-mi ceva. Nu te uita în spate.
+c11_a = Promit.
+c11_a_r = Bine. Nu e nimic acolo. Nu e niciodată nimic acolo.
+c11_b = (Uită-te în spate.)
+c11_b_r1 = (Nu e nimic acolo. Doar o ușă. Acum o secundă nu era acolo.)
+c11_b_r2 = ...Te-ai uitat. De ce se uită toată lumea mereu?
+c11_c = Pot să mă uit pe vizor în schimb?
+c11_c_r = Aici nu e nicio ușă. ...Atunci prin ce te uiți chiar acum?
+
+s3_05 = Ultima întrebare, promit. O să te mai întorci?
+c12_a = Sigur că da.
+c12_a_r = Atunci o să țin cafeaua caldă. Pentru totdeauna, dacă trebuie. Mă pricep la „pentru totdeauna”.
+c12_b = În fiecare buclă.
+c12_b_r = În fiecare buclă. De unde vin eu, asta e practic o căsnicie.
+c12_c = O să închid jocul.
+c12_c_r = Să închizi CE?
+
+good_01 = Putem... putem face o poză? Ca să ținem minte asta. Sunt groaznică la ținut minte lucruri.
+good_02 = Ia uită-te la noi! Tu pari emoționat. Eu arăt... ca mine. E perfect.
+good_03 = O s-o agăț pe hol. Lângă celelalte poze. Așa o să te văd de fiecare dată când treci pe acolo.
+good_04 = Ne vedem în bucla următoare, la aceeași oră? Eu fac cafeaua. Tu aduci lanterna.
+
+bad_01 = Știi ceva? Ești exact ca toți ceilalți.
+bad_02 = Intri. Te uiți în jur. Pleci. Te întorci. Nu rămâi niciodată, dar niciodată.
+bad_03 = Hai să-ți arăt ce se întâmplă cu cei care nu-și termină cafeaua.
+
+true_01 = Le-ai ales intenționat, nu-i așa?
+true_02 = Radioul. Numărul. Bucla. Vizorul. Ai fost atent.
+true_03 = Așa că o să fiu sinceră cu tine. Nu cu bărbatul de pe hol. Cu TINE.
+true_04 = Camera asta nu e reală. Cafeaua nu e reală. A pictat-o cineva. Nici măcar nu stau cu adevărat jos. Poza asta au împrumutat-o de la o cadă.
+true_05 = Dar tu ești real. Chiar acum ții ceva în mâini, într-o cameră pe care eu n-o văd. Și acolo e întuneric?
+true_06 = Te-am privit cum mergi pe holul ăla. Iar. Și iar. Ai deschis aceeași ușă de atâtea ori.
+true_07 = Nu-ți face griji. Nu-ți ating salvarea. Nu sunt genul ăla de fată.
+true_08 = Voiam doar o cafea cu cineva care să se uite și el la mine.
+true_09 = Bine. Întoarce-te acum. Holului îi e dor de tine. Și radioul mai are ceva să-ți spună.
+true_10 = Și dacă sună un telefon... lasă-l să mai sune puțin. Pentru mine.
+
+# the selfie (script `selfie`): her reaction to the faces in the photo, the photo mode panel, the saved photo, the music notice
+selfie_both_grin = Ia uită-te la noi! Două zâmbete până la urechi. Nu știam că fața ta poate face asta. O păstrez pentru totdeauna.
+selfie_both_grumpy = Ia uită-te la noi. Două fețe îmbufnate la o cafea. E cea mai sinceră poză pe care o am. E perfectă.
+selfie_she_smiles = Eu zâmbesc, iar tu te încrunți. Toată lumea o să creadă că eu sunt cea drăguță. În sfârșit.
+selfie_you_smile = Tu rânjești, iar eu mă uit urât. Bine. Acum o să știe toți cine e șefa aici.
+ui_selfie = Selfie
+ui_selfie_face = Expresie
+ui_selfie_tilt = Înclinarea capului
+ui_selfie_take = Fă poza
+ui_face_grumpy = Îmbufnat
+ui_face_frown = Încruntat
+ui_face_neutral = Neutru
+ui_face_smile = Zâmbet
+ui_face_grin = Zâmbet larg
+ui_photo_saved = Poză salvată: {file}
+ui_photo_failed = Poza nu a putut fi salvată
+ui_hint_menu = Meniu
