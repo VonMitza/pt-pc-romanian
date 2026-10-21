@@ -54,6 +54,21 @@ jobs:
           Copy-Item ..\traducere-repo\traducere\romanian_text.h src\engine\core\romanian_text.h -Force
           if (Test-Path assets\lisa_date\text) { Copy-Item ..\traducere-repo\traducere\ron.txt assets\lisa_date\text\ron.txt -Force }
 
+      # The port's public source lacks three files its Windows build declares (tools/nr_native_companion_probe.cpp, the DLSS 5
+      # companion pt-native-nvngx.dll; tools/dx12/spirv_to_hlsl.cpp, the DXIL shader translator; tests/unicode_paths_test.rc).
+      # None of them goes into pt.exe: the companion DLL and the .dxil shaders come with the official install, which the
+      # translation goes over. Stand-ins let CMake configure; the DXIL shaders are not rebuilt (PT_D3D12_SHADERS=OFF) and only
+      # pt.exe is shipped.
+      - name: Stand-ins for files missing upstream
+        shell: pwsh
+        working-directory: pt-pc
+        run: |
+          if (-not (Test-Path tools\nr_native_companion_probe.cpp)) {
+            Set-Content tools\nr_native_companion_probe.cpp 'extern "C" __declspec(dllexport) int pt_companion_stand_in() { return 0; }'
+          }
+          if (-not (Test-Path tests\unicode_paths_test.rc)) { New-Item -ItemType File tests\unicode_paths_test.rc | Out-Null }
+          "PT_D3D12_SHADERS=$((Test-Path tools\dx12\spirv_to_hlsl.cpp) ? 'ON' : 'OFF')" >> $env:GITHUB_ENV
+
       - name: Vulkan SDK
         shell: pwsh
         run: |
@@ -75,7 +90,7 @@ jobs:
         working-directory: pt-pc
         run: |
           set "PATH=C:\Program Files\LLVM\bin;%PATH%"
-          cmake --preset release -B build\release > ..\build.log 2>&1 || (type ..\build.log & exit /b 1)
+          cmake --preset release -B build\release -DPT_D3D12_SHADERS=%PT_D3D12_SHADERS% > ..\build.log 2>&1 || (type ..\build.log & exit /b 1)
           cmake --build build\release --target pt_release >> ..\build.log 2>&1 || (type ..\build.log & exit /b 1)
 
       - name: Diagnose
