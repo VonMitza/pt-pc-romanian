@@ -13,7 +13,10 @@ Traducere completă în română pentru **[P.T. PC Port](https://github.com/Lore
 - **Toate subtitrările**: știrile de la radio, predica, apelul telefonic, punga care vorbește, vocea de după ușă și toate celelalte replici
 - **Ecranul de opțiuni** al jocului (luminozitate, subtitrări, cameră)
 - **Setările PC** în întregime: afișare, grafică, ray tracing, upscaling, sunet, control, microfon
-- **Extra**: selectorul de bucle, Muzeul, modul foto, camera liberă, cronometrul de speedrun, VR
+- **Extra**: selectorul de bucle, Muzeul (cu muzica și emisiunile radio), modul foto, camera liberă, cronometrul de speedrun, VR
+- **O cafea cu Lisa**: întâlnirea cu Lisa din Muzeu, cu toate replicile și finalurile ei
+- **Accesibilitate**: descrierile sonore („[Un bebeluș râde]”, „[Telefonul sună]”), giroscopul, câmpul vizual
+- **DLSS 5, path tracing, generarea de cadre** și toate deblocările lor, actualizarea automată și prima pornire a jocului
 - Mesajele de eroare, explicațiile fiecărei setări și genericul portului
 
 Vocile rămân cele originale, în engleză, ca în toate celelalte traduceri ale portului. Cuvântul pe care îl asculți la microfon rămâne „Jack”.
@@ -29,13 +32,13 @@ Urmează instrucțiunile de acolo. Ai nevoie de copia ta de P.T. de pe PS4 (fold
 
 **2. Descarcă traducerea**
 
-Descarcă de mai jos, din *Assets*, fișierul **`{{ZIP}}`**.
+Descarcă de mai jos, din *Assets*, fișierul **`{{ZIP}}`**. Conține `pt.exe`, folderul `lisa_date` (textele pentru „O cafea cu Lisa”) și `CITESTE-MA.txt`.
 
 **3. Pune traducerea peste joc**
 
 1. Deschide folderul jocului. Implicit e `%LocalAppData%\Programs\P.T. PC Port` (poți lipi calea direct în bara de adrese din Explorer).
 2. Redenumește `pt.exe` existent în **`pt.exe.original`**, ca să-l ai ca rezervă.
-3. Copiază `pt.exe` din arhiva traducerii în folderul jocului.
+3. Copiază din arhiva traducerii `pt.exe` și folderul `lisa_date` în folderul jocului. Când Windows întreabă, alege **Înlocuiește fișierele**: în `lisa_date` se adaugă doar `text\ron.txt`.
 
 **4. Alege limba română**
 
@@ -47,6 +50,7 @@ Salvările și setările tale (folderul `data`) rămân neatinse.
 
 - **Doar pentru Windows** (10 sau 11, 64-bit).
 - **Doar pentru versiunea {{VERSION}}.** Când apare o versiune nouă a portului, instalează-o din proiectul original și așteaptă traducerea actualizată de aici. Un `pt.exe` vechi peste un joc nou (sau invers) poate să nu pornească.
+- **Actualizarea din joc** (Setări PC → Actualizează jocul) instalează versiunea oficială, în engleză, peste traducere. După o actualizare, descarcă și traducerea nouă de aici.
 - **Dezinstalare:** șterge `pt.exe` și redenumește `pt.exe.original` înapoi în `pt.exe`, sau reinstalează jocul din proiectul original.
 - Windows SmartScreen poate avertiza că fișierul nu e semnat. E normal pentru un `pt.exe` compilat de comunitate. Fișierul e compilat public, de GitHub, iar amprenta lui e mai jos.
 
@@ -54,7 +58,7 @@ Salvările și setările tale (folderul `data`) rămân neatinse.
 
 - Compilat automat de GitHub Actions din codul oficial `v{{VERSION}}` al portului, cu traducerea aplicată peste (Release `{{TAG}}`).
 - SHA-256 pentru `pt.exe`: `{{SHA256}}`
-- Textele traducerii: [`traducere/romanian_text.h`](https://github.com/VonMitza/pt-pc-romanian/blob/main/traducere/romanian_text.h).
+- Textele traducerii: [`traducere/romanian_text.h`](https://github.com/VonMitza/pt-pc-romanian/blob/main/traducere/romanian_text.h) și [`traducere/ron.txt`](https://github.com/VonMitza/pt-pc-romanian/blob/main/traducere/ron.txt) („O cafea cu Lisa”).
 
 ## Mulțumiri
 

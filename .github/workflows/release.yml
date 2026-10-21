@@ -1,7 +1,7 @@
-# Releases the Romanian translation: Actions > Release > Run workflow with a tag v<port version>-ro<n> (v1.0.3-ro1).
+# Releases the Romanian translation: Actions > Release > Run workflow with a tag v<port version>-ro<n> (v1.0.7-ro1).
 # It checks out LoreanXavier/pt-pc at v<port version>, applies traducere/romana-<port version>.patch (the language wiring),
-# copies traducere/romanian_text.h over (the texts, the one file to edit for corrections), builds pt.exe and publishes a
-# Release with only pt.exe and CITESTE-MA.txt. The release text is .github/romana/release.md.
+# copies traducere/romanian_text.h (the texts) and traducere/ron.txt (Coffee with Lisa) over, builds pt.exe and publishes a
+# Release with only pt.exe, lisa_date/text/ron.txt and CITESTE-MA.txt. The release text is .github/romana/release.md.
 name: Release
 
 on:
@@ -10,7 +10,7 @@ on:
       tag:
         description: 'Tag-ul Release-ului (v<versiune joc>-ro<n>)'
         required: true
-        default: 'v1.0.3-ro2'
+        default: 'v1.0.7-ro1'
       publica:
         description: 'Publică Release-ul (debifat: doar compilează, pentru test)'
         type: boolean
@@ -52,6 +52,7 @@ jobs:
           git apply --whitespace=nowarn $patch
           if ($LASTEXITCODE) { throw "the patch does not apply to v${{ steps.version.outputs.version }}" }
           Copy-Item ..\traducere-repo\traducere\romanian_text.h src\engine\core\romanian_text.h -Force
+          if (Test-Path assets\lisa_date\text) { Copy-Item ..\traducere-repo\traducere\ron.txt assets\lisa_date\text\ron.txt -Force }
 
       - name: Vulkan SDK
         shell: pwsh
@@ -84,6 +85,10 @@ jobs:
           $zip = "${{ steps.version.outputs.zip }}"
           New-Item -ItemType Directory out\pkg | Out-Null
           Copy-Item pt-pc\build\release\pt_release.exe out\pkg\pt.exe
+          if (Test-Path pt-pc\assets\lisa_date\text\ron.txt) {
+            New-Item -ItemType Directory out\pkg\lisa_date\text | Out-Null
+            Copy-Item pt-pc\assets\lisa_date\text\ron.txt out\pkg\lisa_date\text\ron.txt
+          }
           $sha = (Get-FileHash out\pkg\pt.exe -Algorithm SHA256).Hash.ToLower()
           $utf8 = New-Object System.Text.UTF8Encoding $false
           function Fill($text) {

@@ -1,0 +1,385 @@
+diff --git a/assets/fonts/README.md b/assets/fonts/README.md
+index b23da0f..5ec89b3 100644
+--- a/assets/fonts/README.md
++++ b/assets/fonts/README.md
+@@ -1,6 +1,6 @@
+ # Bundled UI fonts
+ 
+-Google Noto fonts, SIL Open Font License 1.1. Private process registration only; no Windows font installation. Used for added Turkish, Simplified Chinese, Arabic, Russian, Ukrainian, Czech and Polish menus/subtitles. Original game fonts remain for original languages. Arabic uses Noto Kufi Arabic in the menus and Noto Naskh Arabic in the subtitles. The build copies the OFL notices to `licenses/` as well.
++Google Noto fonts, SIL Open Font License 1.1. Private process registration only; no Windows font installation. Used for added Turkish, Simplified Chinese, Arabic, Russian, Ukrainian, Czech, Polish and Romanian menus/subtitles. Original game fonts remain for original languages. Arabic uses Noto Kufi Arabic in the menus and Noto Naskh Arabic in the subtitles. The build copies the OFL notices to `licenses/` as well.
+ 
+ Retrieved from the official google/fonts repository (Noto Sans and Noto Sans SC on 2026-10-02, Noto Kufi Arabic and Noto Naskh Arabic on 2026-10-06). Matching OFL files are beside the fonts. SHA256 pins the files used in this build:
+ 
+diff --git a/docs/linux.md b/docs/linux.md
+index 51e5ab3..b002fdf 100644
+--- a/docs/linux.md
++++ b/docs/linux.md
+@@ -13,7 +13,7 @@ Everything the engine needs from the operating system beyond SDL3 goes through `
+ | `os.h`: `RunProcess` (texture upscaler, installer helper) | `CreateProcessW`, no console, below-normal priority | `posix_spawn`, nice 10, SIGKILL on cancel or timeout |
+ | `os.h`: `FileLock` (one texture generation at a time) | file opened without sharing | `flock` |
+ | `http.h`: HTTPS GET (update check) | WinHTTP | the system libcurl, loaded with `dlopen` (the game starts without it) |
+-| Unicode fonts (Turkish, Chinese, Arabic, Russian, Ukrainian, Czech UI) | GDI + Uniscribe | HarfBuzz 14.6.0 (fetched, built into the binary) + stb_truetype, a small bidi pass for Arabic lines |
++| Unicode fonts (Turkish, Chinese, Arabic, Russian, Ukrainian, Czech, Polish, Romanian UI) | GDI + Uniscribe | HarfBuzz 14.6.0 (fetched, built into the binary) + stb_truetype, a small bidi pass for Arabic lines |
+ | voice recognizer (whisper.cpp) | `whisper.dll`, `ggml*.dll` in `voice/` | `libwhisper.so`, `libggml*.so` in `voice/` (RPATH `$ORIGIN`), worker thread at nice 10 |
+ | enhanced textures | `realesrgan-ncnn-vulkan.exe` + `vcomp140.dll` | `realesrgan-ncnn-vulkan` (the project's ubuntu release, checked by SHA-256) |
+ | folder picker when no game is found | `IFileOpenDialog` | none: a message box asks for `--game` |
+diff --git a/src/engine/audio/subtitles.cpp b/src/engine/audio/subtitles.cpp
+index 632a899..6172c1c 100644
+--- a/src/engine/audio/subtitles.cpp
++++ b/src/engine/audio/subtitles.cpp
+@@ -62,7 +62,7 @@ uint64_t SubtitleTable::MarkerKey(std::string_view label) {
+ 
+ bool SubtitleTable::Load(Vfs& vfs, std::string_view language, std::span<const std::vector<uint8_t>> sab_tables, std::string* error) {
+     const std::string lang = NormalizeLanguage(language);
+-    std::string source = (lang == "Tur" || lang == "Zhs" || lang == "Ara" || lang == "Rus" || lang == "Ukr" || lang == "Ces" || lang == "Pol") ? "Eng" : lang;
++    std::string source = (lang == "Tur" || lang == "Zhs" || lang == "Ara" || lang == "Rus" || lang == "Ukr" || lang == "Ces" || lang == "Pol" || lang == "Ron") ? "Eng" : lang;
+     if (source != "Eng" && !vfs.Archive().Contains(Vfs::ToArchivePath(PackagePath(source)))) {
+         LogWarn("subtitles: {} missing, falling back to English", PackagePath(source));
+         source = "Eng";
+@@ -83,7 +83,7 @@ bool SubtitleTable::Load(Vfs& vfs, std::string_view language, std::span<const st
+     if (!Parse(*subp, sab_tables, error)) {
+         return false;
+     }
+-    const int translation_language = lang == "Tur" ? 7 : lang == "Zhs" ? 8 : lang == "Ara" ? 9 : lang == "Rus" ? 10 : lang == "Ukr" ? 11 : lang == "Ces" ? 12 : lang == "Pol" ? 13 : 0;
++    const int translation_language = lang == "Tur" ? 7 : lang == "Zhs" ? 8 : lang == "Ara" ? 9 : lang == "Rus" ? 10 : lang == "Ukr" ? 11 : lang == "Ces" ? 12 : lang == "Pol" ? 13 : lang == "Ron" ? 14 : 0;
+     if (translation_language) {
+         for (SubtitleEntry& entry : entries_) {
+             bool found = false;
+@@ -92,7 +92,7 @@ bool SubtitleTable::Load(Vfs& vfs, std::string_view language, std::span<const st
+                     size_t i=0; for (auto text : t.lines) { auto& line=entry.lines[i++].text; line=text; std::replace(line.begin(),line.end(),'|','\n'); } found = true; break;
+                 }
+             };
+-            switch(translation_language) {case 7:translate(turkish::kSubtitles);break;case 8:translate(chinese::kSubtitles);break;case 9:translate(arabic::kSubtitles);break;case 10:translate(russian::kSubtitles);break;case 11:translate(ukrainian::kSubtitles);break;case 12:translate(czech::kSubtitles);break;case 13:translate(polish::kSubtitles);break;}
++            switch(translation_language) {case 7:translate(turkish::kSubtitles);break;case 8:translate(chinese::kSubtitles);break;case 9:translate(arabic::kSubtitles);break;case 10:translate(russian::kSubtitles);break;case 11:translate(ukrainian::kSubtitles);break;case 12:translate(czech::kSubtitles);break;case 13:translate(polish::kSubtitles);break;case 14:translate(romanian::kSubtitles);break;}
+             if (!found) { if (error) *error = std::format("{} subtitle {:08x} missing or line count differs", lang, entry.key); return false; }
+         }
+     }
+diff --git a/src/engine/core/arabic_text.h b/src/engine/core/arabic_text.h
+index 294e925..0befafb 100644
+--- a/src/engine/core/arabic_text.h
++++ b/src/engine/core/arabic_text.h
+@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","الأوكرانية"},
+     {"op_sub_czech","التشيكية"},
+     {"op_sub_polish","البولندية"},
++    {"op_sub_romanian","الرومانية"},
+     {"op_camera_setting","الكاميرا"},
+     {"op_camera_y_axis","المحور الرأسي"},
+     {"op_camera_x_axis","المحور الأفقي"},
+diff --git a/src/engine/core/chinese_text.h b/src/engine/core/chinese_text.h
+index c31c557..3f13211 100644
+--- a/src/engine/core/chinese_text.h
++++ b/src/engine/core/chinese_text.h
+@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","乌克兰语"},
+     {"op_sub_czech","捷克语"},
+     {"op_sub_polish","波兰语"},
++    {"op_sub_romanian","罗马尼亚语"},
+     {"op_camera_setting","镜头"},
+     {"op_camera_y_axis","垂直方向"},
+     {"op_camera_x_axis","水平方向"},
+diff --git a/src/engine/core/czech_text.h b/src/engine/core/czech_text.h
+index a9fb0c3..5f9790d 100644
+--- a/src/engine/core/czech_text.h
++++ b/src/engine/core/czech_text.h
+@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Ukrajinština"},
+     {"op_sub_czech","Čeština"},
+     {"op_sub_polish","Polština"},
++    {"op_sub_romanian","Rumunština"},
+     {"op_camera_setting","Kamera"},
+     {"op_camera_y_axis","Svislá osa"},
+     {"op_camera_x_axis","Vodorovná osa"},
+diff --git a/src/engine/core/french_text.h b/src/engine/core/french_text.h
+index b046d64..7b3a274 100644
+--- a/src/engine/core/french_text.h
++++ b/src/engine/core/french_text.h
+@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Ukrainien"},
+     {"op_sub_czech","Tchèque"},
+     {"op_sub_polish","Polonais"},
++    {"op_sub_romanian","Roumain"},
+     {"pc_loop_browser","Sélection de boucle"},
+     {"pc_note_loop_browser_entry","Démarrez n'importe quelle boucle sans remplacer votre sauvegarde."},
+     {"pc_loop_choose","Choisissez une boucle"},
+diff --git a/src/engine/core/german_text.h b/src/engine/core/german_text.h
+index 72be997..9b3b864 100644
+--- a/src/engine/core/german_text.h
++++ b/src/engine/core/german_text.h
+@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Ukrainisch"},
+     {"op_sub_czech","Tschechisch"},
+     {"op_sub_polish","Polnisch"},
++    {"op_sub_romanian","Rumänisch"},
+     {"pc_loop_browser","Schleifenauswahl"},
+     {"pc_note_loop_browser_entry","Beliebige Schleife starten, ohne Ihren Spielstand zu ersetzen."},
+     {"pc_loop_choose","Schleife wählen"},
+diff --git a/src/engine/core/italian_text.h b/src/engine/core/italian_text.h
+index 59f2f53..97d49da 100644
+--- a/src/engine/core/italian_text.h
++++ b/src/engine/core/italian_text.h
+@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Ucraino"},
+     {"op_sub_czech","Ceco"},
+     {"op_sub_polish","Polacco"},
++    {"op_sub_romanian","Rumeno"},
+     {"pc_loop_browser","Selezione ciclo"},
+     {"pc_note_loop_browser_entry","Avvia qualsiasi ciclo senza sostituire il tuo salvataggio."},
+     {"pc_loop_choose","Scegli un ciclo"},
+diff --git a/src/engine/core/japanese_text.h b/src/engine/core/japanese_text.h
+index 737742d..a4d87fe 100644
+--- a/src/engine/core/japanese_text.h
++++ b/src/engine/core/japanese_text.h
+@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","ウクライナ語"},
+     {"op_sub_czech","チェコ語"},
+     {"op_sub_polish","ポーランド語"},
++    {"op_sub_romanian","ルーマニア語"},
+     {"pc_loop_browser","ループ選択"},
+     {"pc_note_loop_browser_entry","セーブデータを上書きせずに、好きなループから始めます。"},
+     {"pc_loop_choose","ループを選択"},
+diff --git a/src/engine/core/localized_text.h b/src/engine/core/localized_text.h
+index 99d68e4..6e62ecd 100644
+--- a/src/engine/core/localized_text.h
++++ b/src/engine/core/localized_text.h
+@@ -6,6 +6,7 @@
+ #include "engine/core/ukrainian_text.h"
+ #include "engine/core/czech_text.h"
+ #include "engine/core/polish_text.h"
++#include "engine/core/romanian_text.h"
+ #include "engine/core/french_text.h"
+ #include "engine/core/german_text.h"
+ #include "engine/core/spanish_text.h"
+@@ -15,17 +16,18 @@
+ #include <string>
+ namespace pt::localized {
+ inline std::string_view Menu(std::string_view key, int language) {
+- switch(language) {case 1:return french::Menu(key); case 2:return german::Menu(key); case 3:return spanish::Menu(key); case 4:return japanese::Menu(key); case 5:return italian::Menu(key); case 6:return portuguese::Menu(key); case 7:return turkish::Menu(key); case 8:return chinese::Menu(key); case 9:return arabic::Menu(key);case 10:return russian::Menu(key);case 11:return ukrainian::Menu(key);case 12:return czech::Menu(key);case 13:return polish::Menu(key);default:return {};}
++ switch(language) {case 1:return french::Menu(key); case 2:return german::Menu(key); case 3:return spanish::Menu(key); case 4:return japanese::Menu(key); case 5:return italian::Menu(key); case 6:return portuguese::Menu(key); case 7:return turkish::Menu(key); case 8:return chinese::Menu(key); case 9:return arabic::Menu(key);case 10:return russian::Menu(key);case 11:return ukrainian::Menu(key);case 12:return czech::Menu(key);case 13:return polish::Menu(key);case 14:return romanian::Menu(key);default:return {};}
+ }
+ inline std::string Characters(int language) {
+  std::string out;for(int c=32;c<127;++c) out.push_back(char(c));
+  auto add=[&](const auto& menu,const auto& subtitles){for(const auto& e:menu) out+=e.text;for(const auto& e:subtitles)for(auto line:e.lines) out+=line;};
+- switch(language){case 7:add(turkish::kMenu,turkish::kSubtitles);break;case 8:add(chinese::kMenu,chinese::kSubtitles);break;case 9:add(arabic::kMenu,arabic::kSubtitles);break;case 10:add(russian::kMenu,russian::kSubtitles);break;case 11:add(ukrainian::kMenu,ukrainian::kSubtitles);break;case 12:add(czech::kMenu,czech::kSubtitles);break;case 13:add(polish::kMenu,polish::kSubtitles);break;}
++ switch(language){case 7:add(turkish::kMenu,turkish::kSubtitles);break;case 8:add(chinese::kMenu,chinese::kSubtitles);break;case 9:add(arabic::kMenu,arabic::kSubtitles);break;case 10:add(russian::kMenu,russian::kSubtitles);break;case 11:add(ukrainian::kMenu,ukrainian::kSubtitles);break;case 12:add(czech::kMenu,czech::kSubtitles);break;case 13:add(polish::kMenu,polish::kSubtitles);break;case 14:add(romanian::kMenu,romanian::kSubtitles);break;}
+  if (language == 10 || language == 11) {
+   auto utf8 = [&](uint32_t c) { out.push_back(char(0xC0 | (c >> 6))); out.push_back(char(0x80 | (c & 0x3F))); };
+   for (uint32_t c = 0x0400; c <= 0x045F; ++c) utf8(c);
+   utf8(0x0490); utf8(0x0491);
+  }
++ if (language == 14) out += "ĂăÂâÎîȘșȚțŞşŢţ„”";
+  return out;
+ }
+ }
+diff --git a/src/engine/core/polish_text.h b/src/engine/core/polish_text.h
+index 0fcaedc..653d0bc 100644
+--- a/src/engine/core/polish_text.h
++++ b/src/engine/core/polish_text.h
+@@ -111,6 +111,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Ukraiński"},
+     {"op_sub_czech","Czeski"},
+     {"op_sub_polish","Polski"},
++    {"op_sub_romanian","Rumuński"},
+     {"op_camera_setting","Kamera"},
+     {"op_camera_y_axis","Oś pionowa"},
+     {"op_camera_x_axis","Oś pozioma"},
+diff --git a/src/engine/core/portuguese_text.h b/src/engine/core/portuguese_text.h
+index f7f2a09..4943c59 100644
+--- a/src/engine/core/portuguese_text.h
++++ b/src/engine/core/portuguese_text.h
+@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Ucraniano"},
+     {"op_sub_czech","Checo"},
+     {"op_sub_polish","Polonês"},
++    {"op_sub_romanian","Romeno"},
+     {"pc_loop_browser","Seleção de loop"},
+     {"pc_note_loop_browser_entry","Comece qualquer loop sem substituir seu arquivo salvo."},
+     {"pc_loop_choose","Escolha um loop"},
+diff --git a/src/engine/core/russian_text.h b/src/engine/core/russian_text.h
+index 627e142..cfa11b6 100644
+--- a/src/engine/core/russian_text.h
++++ b/src/engine/core/russian_text.h
+@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Украинский"},
+     {"op_sub_czech","Чешский"},
+     {"op_sub_polish","Польский"},
++    {"op_sub_romanian","Румынский"},
+     {"op_camera_setting","Камера"},
+     {"op_camera_y_axis","По вертикали"},
+     {"op_camera_x_axis","По горизонтали"},
+diff --git a/src/engine/core/spanish_text.h b/src/engine/core/spanish_text.h
+index ebe7b2c..8f4499a 100644
+--- a/src/engine/core/spanish_text.h
++++ b/src/engine/core/spanish_text.h
+@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Ucraniano"},
+     {"op_sub_czech","Checo"},
+     {"op_sub_polish","Polaco"},
++    {"op_sub_romanian","Rumano"},
+     {"pc_loop_browser","Selector de bucles"},
+     {"pc_note_loop_browser_entry","Inicia cualquier bucle sin reemplazar tu partida guardada."},
+     {"pc_loop_choose","Elige un bucle"},
+diff --git a/src/engine/core/turkish_text.h b/src/engine/core/turkish_text.h
+index dbd4b3e..a762291 100644
+--- a/src/engine/core/turkish_text.h
++++ b/src/engine/core/turkish_text.h
+@@ -79,7 +79,7 @@ inline constexpr Text kMenu[] = {
+     {"pc_archive_model_hint","{kb}{walk}{/kb}{pad}sol analog{/pad}: yaklaş veya uzaklaş. {kb}{look}{/kb}{pad}sağ analog{/pad}: bak. {kb}{rise}{sink}{/kb}{pad}tetikler{/pad}: yüksel/alçal. {kb}{fast}{/kb}{pad}L3{/pad}: hızlan. {back}: geri."},
+     {"pc_ending_skip_hold","Atlamak için {pause} tuşunu basılı tut"},
+     {"pc_note_resolution_fullscreen","Çerçevesiz mod seçilen boyutu kullanır; özel tam ekran desteklenen ekran boyutunu kullanır."},
+-    {"op_sub_turkish","Türkçe"},{"op_sub_chinese","Çince (basitleştirilmiş)"},{"op_sub_arabic","Arapça"},{"op_sub_russian","Rusça"},{"op_sub_ukrainian","Ukraynaca"},{"op_sub_czech","Çekçe"},{"op_sub_polish","Lehçe"},
++    {"op_sub_turkish","Türkçe"},{"op_sub_chinese","Çince (basitleştirilmiş)"},{"op_sub_arabic","Arapça"},{"op_sub_russian","Rusça"},{"op_sub_ukrainian","Ukraynaca"},{"op_sub_czech","Çekçe"},{"op_sub_polish","Lehçe"},{"op_sub_romanian","Rumence"},
+     {"op_options","SEÇENEKLER"},{"op_back","Geri"},{"op_brightness_setting","Parlaklık"},
+     {"op_britness_tip","Yalnızca soldaki resim görünene kadar parlaklığı ayarlayın."},
+     {"op_subtitles_setting","Altyazılar"},{"op_sub_none","Kapalı"},{"op_sub_english","İngilizce"},
+diff --git a/src/engine/core/ukrainian_text.h b/src/engine/core/ukrainian_text.h
+index 1007a3b..08918db 100644
+--- a/src/engine/core/ukrainian_text.h
++++ b/src/engine/core/ukrainian_text.h
+@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+     {"op_sub_ukrainian","Українська"},
+     {"op_sub_czech","Чеська"},
+     {"op_sub_polish","Польська"},
++    {"op_sub_romanian","Румунська"},
+     {"op_camera_setting","Камера"},
+     {"op_camera_y_axis","По вертикалі"},
+     {"op_camera_x_axis","По горизонталі"},
+diff --git a/src/game/save_data.cpp b/src/game/save_data.cpp
+index acf18c6..f690389 100644
+--- a/src/game/save_data.cpp
++++ b/src/game/save_data.cpp
+@@ -80,6 +80,9 @@ GameOptions DefaultOptionsForLocale(std::string_view locale) {
+         options.subtitle_language = 12;
+     } else if (primary == "pl") {
+         options.subtitle_language = 13;
++    } else if (primary == "ro" || primary == "mo") {
++        // Romanian (and the retired "mo" tag for Moldovan, the same language)
++        options.subtitle_language = 14;
+     }
+     return options;
+ }
+diff --git a/src/game/ui/options_menu.cpp b/src/game/ui/options_menu.cpp
+index 9275651..f30c5d6 100644
+--- a/src/game/ui/options_menu.cpp
++++ b/src/game/ui/options_menu.cpp
+@@ -70,9 +70,9 @@ constexpr int kFirstSubtitleSelector = 4;
+ constexpr int kLastSubtitleSelector = kFirstSubtitleSelector + UiAssets::kLanguageCount;
+ constexpr const char* kLanguageKeys[] = {"op_sub_none", "op_sub_english", "op_sub_french", "op_sub_german",
+     "op_sub_spanish", "op_sub_japanese", "op_sub_itlian", "op_sub_portuguese", "op_sub_turkish",
+-    "op_sub_chinese", "op_sub_arabic", "op_sub_russian", "op_sub_ukrainian", "op_sub_czech", "op_sub_polish"};
++    "op_sub_chinese", "op_sub_arabic", "op_sub_russian", "op_sub_ukrainian", "op_sub_czech", "op_sub_polish", "op_sub_romanian"};
+ constexpr std::string_view kNativeLanguageNames[] = {"", "English", "Français", "Deutsch", "Español",
+-    "日本語", "Italiano", "Português", "Türkçe", "Chinese (Simplified)", "Arabic", "Russian", "Ukrainian", "Czech", "Polish"};
++    "日本語", "Italiano", "Português", "Türkçe", "Chinese (Simplified)", "Arabic", "Russian", "Ukrainian", "Czech", "Polish", "Romanian"};
+ static_assert(std::size(kLanguageKeys) == UiAssets::kLanguageCount + 1);
+ static_assert(std::size(kNativeLanguageNames) == std::size(kLanguageKeys));
+ 
+@@ -152,8 +152,10 @@ bool OptionsMenu::Init(UiAssets& assets) {
+     const ui::UifNode label_template = *derived_->FindById(121);
+     for (int i = 0; i <= UiAssets::kLanguageCount; ++i) {
+         ui::UifNode row = row_template;
+-        row.translate.x += i < 7 ? -11.0f : 11.0f;
+-        row.translate.y -= static_cast<float>(i < 7 ? i : i - 7) * 2.5f;
++        // two columns of eight rows (off and fifteen languages), no taller than the right column was with fourteen
++        constexpr int kColumnRows = (UiAssets::kLanguageCount + 2) / 2;
++        row.translate.x += i < kColumnRows ? -11.0f : 11.0f;
++        row.translate.y -= static_cast<float>(i < kColumnRows ? i : i - kColumnRows) * 2.5f;
+         const auto group = derived_->AddNode(std::move(row), StrCode64(std::format("option_language_row_{}", i)));
+         ui::UifNode label = label_template;
+         label.parent = derived_->IndexOfId(group);
+diff --git a/src/game/ui/subtitle_player.cpp b/src/game/ui/subtitle_player.cpp
+index 56ef6aa..5b3a801 100644
+--- a/src/game/ui/subtitle_player.cpp
++++ b/src/game/ui/subtitle_player.cpp
+@@ -12,7 +12,7 @@
+ namespace pt::game {
+ namespace {
+ 
+-constexpr const char* kSubtitleLanguages[SubtitlePlayer::kLanguageCount] = {"Eng", "Fre", "Ger", "Spa", "Jpn", "Ita", "Por", "Tur", "Zhs", "Ara", "Rus", "Ukr", "Ces", "Pol"};
++constexpr const char* kSubtitleLanguages[SubtitlePlayer::kLanguageCount] = {"Eng", "Fre", "Ger", "Spa", "Jpn", "Ita", "Por", "Tur", "Zhs", "Ara", "Rus", "Ukr", "Ces", "Pol", "Ron"};
+ 
+ constexpr int kPlayingPriority[8] = {255, 0, 0, 10, 20, 30, 40, 0};
+ constexpr float kRangeRadius[4] = {0.0f, 20.0f, 40.0f, 70.0f};
+diff --git a/src/game/ui/subtitle_player.h b/src/game/ui/subtitle_player.h
+index eb29db8..0f6df27 100644
+--- a/src/game/ui/subtitle_player.h
++++ b/src/game/ui/subtitle_player.h
+@@ -28,7 +28,7 @@ struct SubtitleView {
+ 
+ class SubtitlePlayer {
+ public:
+-    static constexpr int kLanguageCount = 14;
++    static constexpr int kLanguageCount = 15;
+ 
+     void Init(Vfs& vfs) { vfs_ = &vfs; }
+     void SetLanguage(int language);
+diff --git a/src/game/ui/ui_assets.h b/src/game/ui/ui_assets.h
+index 4ea7a7c..840625f 100644
+--- a/src/game/ui/ui_assets.h
++++ b/src/game/ui/ui_assets.h
+@@ -59,8 +59,8 @@ struct UiFont {
+ 
+ class UiAssets {
+ public:
+-    static constexpr int kLanguageCount = 14;
+-    static constexpr const char* kLanguageCodes[kLanguageCount] = {"eng", "fra", "deu", "spa", "jpn", "ita", "por", "tur", "zhs", "ara", "rus", "ukr", "ces", "pol"};
++    static constexpr int kLanguageCount = 15;
++    static constexpr const char* kLanguageCodes[kLanguageCount] = {"eng", "fra", "deu", "spa", "jpn", "ita", "por", "tur", "zhs", "ara", "rus", "ukr", "ces", "pol", "ron"};
+ 
+     UiAssets() = default;
+     UiAssets(const UiAssets&) = delete;
+diff --git a/tests/language_default_test.cpp b/tests/language_default_test.cpp
+index 4319edb..b7395bf 100644
+--- a/tests/language_default_test.cpp
++++ b/tests/language_default_test.cpp
+@@ -32,6 +32,9 @@ int main() {
+     expect("cs", true, 12);
+     expect("pl", true, 13);
+     expect("pl-PL", true, 13);
++    expect("ro", true, 14);
++    expect("ro-RO", true, 14);
++    expect("ro-MD", true, 14);
+     expect("ko-KR", true, 0);
+     expect("zh-TW", true, 0);
+     expect("zh-Hant-HK", true, 0);
+diff --git a/tests/lisa_date_test.cpp b/tests/lisa_date_test.cpp
+index ddf959b..aab6ac6 100644
+--- a/tests/lisa_date_test.cpp
++++ b/tests/lisa_date_test.cpp
+@@ -285,7 +285,7 @@ int main() {
+     }
+     assert(missing == 0);
+     for (const auto& [key, text] : tur) assert(eng.contains(key));
+-    for (const char* code : {"tur", "fra", "deu", "spa", "jpn", "ita", "por", "zhs", "ara", "rus", "ukr", "ces", "pol"}) {
++    for (const char* code : {"tur", "fra", "deu", "spa", "jpn", "ita", "por", "zhs", "ara", "rus", "ukr", "ces", "pol", "ron"}) {
+         const auto table = LisaDateScript::ParseText(Read(dir / "text" / (std::string(code) + ".txt")));
+         for (const auto& [key, text] : eng) {
+             if (!table.contains(key) || table.at(key).empty()) std::printf("%s.txt lacks %s\n", code, key.c_str());
+diff --git a/tests/localization_test.cpp b/tests/localization_test.cpp
+index 53338f5..db789e9 100644
+--- a/tests/localization_test.cpp
++++ b/tests/localization_test.cpp
+@@ -71,7 +71,7 @@ int main(int argc,char** argv) {
+             auto tokens=[](std::string_view s){std::string out;for(size_t i=s.find('{');i!=std::string_view::npos;i=s.find('{',i+1))out+=s.substr(i,s.find('}',i)-i+1);return out;};
+             for(const auto& e:pt::chinese::kMenu) {
+                 const bool wanted=e.key.starts_with("pc_") || e.key=="op_sub_turkish" || e.key=="op_sub_chinese" || e.key=="op_sub_arabic" ||
+-                                  e.key=="op_sub_russian" || e.key=="op_sub_ukrainian" || e.key=="op_sub_czech" || e.key=="op_sub_polish";
++                                  e.key=="op_sub_russian" || e.key=="op_sub_ukrainian" || e.key=="op_sub_czech" || e.key=="op_sub_polish" || e.key=="op_sub_romanian";
+                 if(!wanted) continue;
+                 const auto text=pt::localized::Menu(e.key,lang); ++count;
+                 if(text.empty()) {std::printf("FAIL: %s lacks %.*s\n",names[lang],int(e.key.size()),e.key.data());++local;continue;}
+diff --git a/tests/multilingual_test.cpp b/tests/multilingual_test.cpp
+index c9da47b..fe0f705 100644
+--- a/tests/multilingual_test.cpp
++++ b/tests/multilingual_test.cpp
+@@ -8,8 +8,8 @@
+ int main(int argc, char** argv) {
+  if(argc!=2)return 2;pt::Vfs vfs;if(!vfs.Mount(argv[1]))return 2;
+  pt::audio::SubtitleTable english;std::string error;if(!english.Load(vfs,"Eng",{},&error))return 2;
+- int failures=0;const char* codes[]={"Tur","Zhs","Ara","Rus","Ukr","Ces","Pol"};
+- for(int lang=7;lang<14;++lang){
++ int failures=0;const char* codes[]={"Tur","Zhs","Ara","Rus","Ukr","Ces","Pol","Ron"};
++ for(int lang=7;lang<15;++lang){
+   pt::audio::SubtitleTable translated;
+   if(!translated.Load(vfs,codes[lang-7],{},&error)){printf("FAIL: %s\n",error.c_str());++failures;continue;}
+   pt::ui::FfntFont font;auto family=lang==8?"Noto Sans SC":lang==9?"Noto Kufi Arabic":"Noto Sans";
