@@ -75,8 +75,23 @@ jobs:
         working-directory: pt-pc
         run: |
           set "PATH=C:\Program Files\LLVM\bin;%PATH%"
-          cmake --preset release -B build\release || exit /b 1
-          cmake --build build\release --target pt_release || exit /b 1
+          cmake --preset release -B build\release > ..\build.log 2>&1 || (type ..\build.log & exit /b 1)
+          cmake --build build\release --target pt_release >> ..\build.log 2>&1 || (type ..\build.log & exit /b 1)
+
+      - name: Diagnose
+        if: failure()
+        shell: pwsh
+        run: |
+          if (-not (Test-Path build.log)) { exit 0 }
+          $lines = Get-Content build.log
+          $hits = @()
+          for ($i = 0; $i -lt $lines.Count; $i++) {
+            if ($lines[$i] -match 'CMake Error|CMake Warning|error|FAILED|cannot|differs|missing|failed') {
+              $hits += ($lines[[Math]::Max(0,$i-1)..[Math]::Min($lines.Count-1,$i+4)] -join ' | ')
+            }
+          }
+          $blocks = @($hits | Select-Object -First 24) + @("TAIL: " + (($lines | Select-Object -Last 25) -join ' | '))
+          foreach ($b in $blocks) { $m = $b.Substring(0, [Math]::Min(3500, $b.Length)); Write-Output "::error::$m" }
 
       - name: Package
         shell: pwsh
