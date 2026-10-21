@@ -84,14 +84,15 @@ jobs:
         run: |
           if (-not (Test-Path build.log)) { exit 0 }
           $lines = Get-Content build.log
+          $tail = ($lines | Select-Object -Last 30) -join ' | '
+          Write-Output "::error::TAIL: $($tail.Substring([Math]::Max(0, $tail.Length - 3800)))"
           $hits = @()
           for ($i = 0; $i -lt $lines.Count; $i++) {
-            if ($lines[$i] -match 'CMake Error|CMake Warning|error|FAILED|cannot|differs|missing|failed') {
-              $hits += ($lines[[Math]::Max(0,$i-1)..[Math]::Min($lines.Count-1,$i+4)] -join ' | ')
+            if ($lines[$i] -match 'CMake Error|FATAL|FAILED:|: error|error:|fatal error') {
+              $hits += ($lines[$i..[Math]::Min($lines.Count-1,$i+6)] -join ' | ')
             }
           }
-          $blocks = @($hits | Select-Object -First 24) + @("TAIL: " + (($lines | Select-Object -Last 25) -join ' | '))
-          foreach ($b in $blocks) { $m = $b.Substring(0, [Math]::Min(3500, $b.Length)); Write-Output "::error::$m" }
+          foreach ($b in ($hits | Select-Object -First 8)) { Write-Output "::error::$($b.Substring(0, [Math]::Min(3500, $b.Length)))" }
 
       - name: Package
         shell: pwsh
