@@ -32,13 +32,13 @@ Urmează instrucțiunile de acolo. Ai nevoie de copia ta de P.T. de pe PS4 (fold
 
 **2. Descarcă traducerea**
 
-Descarcă de mai jos, din *Assets*, fișierul **`{{ZIP}}`**. Conține `pt.exe`, folderul `lisa_date` (textele pentru „O cafea cu Lisa”) și `CITESTE-MA.txt`.
+Descarcă de mai jos, din *Assets*, fișierul **`{{ZIP}}`**. Conține `pt.exe` (cu tot cu textele pentru „O cafea cu Lisa”) și `CITESTE-MA.txt`.
 
 **3. Pune traducerea peste joc**
 
 1. Deschide folderul jocului. Implicit e `%LocalAppData%\Programs\P.T. PC Port` (poți lipi calea direct în bara de adrese din Explorer).
 2. Redenumește `pt.exe` existent în **`pt.exe.original`**, ca să-l ai ca rezervă.
-3. Copiază din arhiva traducerii `pt.exe` și folderul `lisa_date` în folderul jocului. Când Windows întreabă, alege **Înlocuiește fișierele**: în `lisa_date` se adaugă doar `text\ron.txt`.
+3. Copiază `pt.exe` din arhiva traducerii în folderul jocului.
 
 **4. Alege limba română**
 
@@ -56,7 +56,7 @@ Salvările și setările tale (folderul `data`) rămân neatinse.
 
 ## Detalii tehnice
 
-- Compilat automat de GitHub Actions din codul oficial `v{{VERSION}}` al portului, cu traducerea aplicată peste (Release `{{TAG}}`). Sursa publică a versiunii 1.0.7 nu include trei fișiere care nu fac parte din `pt.exe` (DLL-ul pentru DLSS 5 și instrumentul care generează shaderele DirectX 12). De aceea, acestea rămân cele din instalarea oficială.
+- Compilat automat de GitHub Actions din codul oficial `v{{VERSION}}` al portului, cu traducerea aplicată peste (Release `{{TAG}}`).
 - SHA-256 pentru `pt.exe`: `{{SHA256}}`
 - Textele traducerii: [`traducere/romanian_text.h`](https://github.com/VonMitza/pt-pc-romanian/blob/main/traducere/romanian_text.h) și [`traducere/ron.txt`](https://github.com/VonMitza/pt-pc-romanian/blob/main/traducere/ron.txt) („O cafea cu Lisa”).
 

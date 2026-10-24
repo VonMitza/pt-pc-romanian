@@ -55,10 +55,10 @@ index 632a899..6172c1c 100644
          }
      }
 diff --git a/src/engine/core/arabic_text.h b/src/engine/core/arabic_text.h
-index 294e925..0befafb 100644
+index bbdd138..b6fd7b4 100644
 --- a/src/engine/core/arabic_text.h
 +++ b/src/engine/core/arabic_text.h
-@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+@@ -128,6 +128,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","الأوكرانية"},
      {"op_sub_czech","التشيكية"},
      {"op_sub_polish","البولندية"},
@@ -67,10 +67,10 @@ index 294e925..0befafb 100644
      {"op_camera_y_axis","المحور الرأسي"},
      {"op_camera_x_axis","المحور الأفقي"},
 diff --git a/src/engine/core/chinese_text.h b/src/engine/core/chinese_text.h
-index c31c557..3f13211 100644
+index c39f10c..2fbd7da 100644
 --- a/src/engine/core/chinese_text.h
 +++ b/src/engine/core/chinese_text.h
-@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+@@ -128,6 +128,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","乌克兰语"},
      {"op_sub_czech","捷克语"},
      {"op_sub_polish","波兰语"},
@@ -79,10 +79,10 @@ index c31c557..3f13211 100644
      {"op_camera_y_axis","垂直方向"},
      {"op_camera_x_axis","水平方向"},
 diff --git a/src/engine/core/czech_text.h b/src/engine/core/czech_text.h
-index a9fb0c3..5f9790d 100644
+index b05293a..b8db0b5 100644
 --- a/src/engine/core/czech_text.h
 +++ b/src/engine/core/czech_text.h
-@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+@@ -128,6 +128,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Ukrajinština"},
      {"op_sub_czech","Čeština"},
      {"op_sub_polish","Polština"},
@@ -91,10 +91,10 @@ index a9fb0c3..5f9790d 100644
      {"op_camera_y_axis","Svislá osa"},
      {"op_camera_x_axis","Vodorovná osa"},
 diff --git a/src/engine/core/french_text.h b/src/engine/core/french_text.h
-index b046d64..7b3a274 100644
+index 4086452..12658a9 100644
 --- a/src/engine/core/french_text.h
 +++ b/src/engine/core/french_text.h
-@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+@@ -113,6 +113,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Ukrainien"},
      {"op_sub_czech","Tchèque"},
      {"op_sub_polish","Polonais"},
@@ -103,10 +103,10 @@ index b046d64..7b3a274 100644
      {"pc_note_loop_browser_entry","Démarrez n'importe quelle boucle sans remplacer votre sauvegarde."},
      {"pc_loop_choose","Choisissez une boucle"},
 diff --git a/src/engine/core/german_text.h b/src/engine/core/german_text.h
-index 72be997..9b3b864 100644
+index 3d5f3e5..3e8843f 100644
 --- a/src/engine/core/german_text.h
 +++ b/src/engine/core/german_text.h
-@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+@@ -113,6 +113,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Ukrainisch"},
      {"op_sub_czech","Tschechisch"},
      {"op_sub_polish","Polnisch"},
@@ -115,10 +115,10 @@ index 72be997..9b3b864 100644
      {"pc_note_loop_browser_entry","Beliebige Schleife starten, ohne Ihren Spielstand zu ersetzen."},
      {"pc_loop_choose","Schleife wählen"},
 diff --git a/src/engine/core/italian_text.h b/src/engine/core/italian_text.h
-index 59f2f53..97d49da 100644
+index 233934a..5700418 100644
 --- a/src/engine/core/italian_text.h
 +++ b/src/engine/core/italian_text.h
-@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+@@ -113,6 +113,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Ucraino"},
      {"op_sub_czech","Ceco"},
      {"op_sub_polish","Polacco"},
@@ -127,10 +127,10 @@ index 59f2f53..97d49da 100644
      {"pc_note_loop_browser_entry","Avvia qualsiasi ciclo senza sostituire il tuo salvataggio."},
      {"pc_loop_choose","Scegli un ciclo"},
 diff --git a/src/engine/core/japanese_text.h b/src/engine/core/japanese_text.h
-index 737742d..a4d87fe 100644
+index a988281..1e9f565 100644
 --- a/src/engine/core/japanese_text.h
 +++ b/src/engine/core/japanese_text.h
-@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+@@ -113,6 +113,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","ウクライナ語"},
      {"op_sub_czech","チェコ語"},
      {"op_sub_polish","ポーランド語"},
@@ -172,10 +172,10 @@ index 99d68e4..6e62ecd 100644
  }
  }
 diff --git a/src/engine/core/polish_text.h b/src/engine/core/polish_text.h
-index 0fcaedc..653d0bc 100644
+index d03b00d..61b8504 100644
 --- a/src/engine/core/polish_text.h
 +++ b/src/engine/core/polish_text.h
-@@ -111,6 +111,7 @@ inline constexpr Text kMenu[] = {
+@@ -140,6 +140,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Ukraiński"},
      {"op_sub_czech","Czeski"},
      {"op_sub_polish","Polski"},
@@ -184,10 +184,10 @@ index 0fcaedc..653d0bc 100644
      {"op_camera_y_axis","Oś pionowa"},
      {"op_camera_x_axis","Oś pozioma"},
 diff --git a/src/engine/core/portuguese_text.h b/src/engine/core/portuguese_text.h
-index f7f2a09..4943c59 100644
+index 3012521..576a8de 100644
 --- a/src/engine/core/portuguese_text.h
 +++ b/src/engine/core/portuguese_text.h
-@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+@@ -113,6 +113,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Ucraniano"},
      {"op_sub_czech","Checo"},
      {"op_sub_polish","Polonês"},
@@ -196,10 +196,10 @@ index f7f2a09..4943c59 100644
      {"pc_note_loop_browser_entry","Comece qualquer loop sem substituir seu arquivo salvo."},
      {"pc_loop_choose","Escolha um loop"},
 diff --git a/src/engine/core/russian_text.h b/src/engine/core/russian_text.h
-index 627e142..cfa11b6 100644
+index a46e3e9..10a4bf3 100644
 --- a/src/engine/core/russian_text.h
 +++ b/src/engine/core/russian_text.h
-@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+@@ -128,6 +128,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Украинский"},
      {"op_sub_czech","Чешский"},
      {"op_sub_polish","Польский"},
@@ -208,10 +208,10 @@ index 627e142..cfa11b6 100644
      {"op_camera_y_axis","По вертикали"},
      {"op_camera_x_axis","По горизонтали"},
 diff --git a/src/engine/core/spanish_text.h b/src/engine/core/spanish_text.h
-index ebe7b2c..8f4499a 100644
+index 8ac3848..8a50c31 100644
 --- a/src/engine/core/spanish_text.h
 +++ b/src/engine/core/spanish_text.h
-@@ -84,6 +84,7 @@ inline constexpr Text kMenu[] = {
+@@ -113,6 +113,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Ucraniano"},
      {"op_sub_czech","Checo"},
      {"op_sub_polish","Polaco"},
@@ -220,10 +220,10 @@ index ebe7b2c..8f4499a 100644
      {"pc_note_loop_browser_entry","Inicia cualquier bucle sin reemplazar tu partida guardada."},
      {"pc_loop_choose","Elige un bucle"},
 diff --git a/src/engine/core/turkish_text.h b/src/engine/core/turkish_text.h
-index dbd4b3e..a762291 100644
+index 37dc004..269bdc6 100644
 --- a/src/engine/core/turkish_text.h
 +++ b/src/engine/core/turkish_text.h
-@@ -79,7 +79,7 @@ inline constexpr Text kMenu[] = {
+@@ -108,7 +108,7 @@ inline constexpr Text kMenu[] = {
      {"pc_archive_model_hint","{kb}{walk}{/kb}{pad}sol analog{/pad}: yaklaş veya uzaklaş. {kb}{look}{/kb}{pad}sağ analog{/pad}: bak. {kb}{rise}{sink}{/kb}{pad}tetikler{/pad}: yüksel/alçal. {kb}{fast}{/kb}{pad}L3{/pad}: hızlan. {back}: geri."},
      {"pc_ending_skip_hold","Atlamak için {pause} tuşunu basılı tut"},
      {"pc_note_resolution_fullscreen","Çerçevesiz mod seçilen boyutu kullanır; özel tam ekran desteklenen ekran boyutunu kullanır."},
@@ -233,10 +233,10 @@ index dbd4b3e..a762291 100644
      {"op_britness_tip","Yalnızca soldaki resim görünene kadar parlaklığı ayarlayın."},
      {"op_subtitles_setting","Altyazılar"},{"op_sub_none","Kapalı"},{"op_sub_english","İngilizce"},
 diff --git a/src/engine/core/ukrainian_text.h b/src/engine/core/ukrainian_text.h
-index 1007a3b..08918db 100644
+index 358890c..a72965f 100644
 --- a/src/engine/core/ukrainian_text.h
 +++ b/src/engine/core/ukrainian_text.h
-@@ -99,6 +99,7 @@ inline constexpr Text kMenu[] = {
+@@ -128,6 +128,7 @@ inline constexpr Text kMenu[] = {
      {"op_sub_ukrainian","Українська"},
      {"op_sub_czech","Чеська"},
      {"op_sub_polish","Польська"},
@@ -244,6 +244,203 @@ index 1007a3b..08918db 100644
      {"op_camera_setting","Камера"},
      {"op_camera_y_axis","По вертикалі"},
      {"op_camera_x_axis","По горизонталі"},
+diff --git a/src/game/lisa_date/lisa_date.cpp b/src/game/lisa_date/lisa_date.cpp
+index 78f9e7f..5a6551d 100644
+--- a/src/game/lisa_date/lisa_date.cpp
++++ b/src/game/lisa_date/lisa_date.cpp
+@@ -1,4 +1,5 @@
+ #include "game/lisa_date/lisa_date.h"
++#include "game/lisa_date/lisa_date_romanian.h"
+ 
+ #include <glm/gtc/matrix_transform.hpp>
+ #include <glm/gtc/quaternion.hpp>
+@@ -177,7 +178,9 @@ void LisaDate::LoadText() {
+     text_.SetEnglish(LisaDateScript::ParseText(ReadText("text/eng.txt")));
+     const int language = std::clamp(settings_.language, 0, UiAssets::kLanguageCount - 1);
+     if (language > 0) {
+-        text_.SetLanguage(LisaDateScript::ParseText(ReadText("text/" + std::string(UiAssets::kLanguageCodes[language]) + ".txt")));
++        std::string text = ReadText("text/" + std::string(UiAssets::kLanguageCodes[language]) + ".txt");
++        if (text.empty() && std::string_view(UiAssets::kLanguageCodes[language]) == "ron") text = std::string(kRomanianLisaDateText);
++        text_.SetLanguage(LisaDateScript::ParseText(text));
+     }
+ }
+ 
+diff --git a/src/game/lisa_date/lisa_date_romanian.h b/src/game/lisa_date/lisa_date_romanian.h
+new file mode 100644
+index 0000000..df63be4
+--- /dev/null
++++ b/src/game/lisa_date/lisa_date_romanian.h
+@@ -0,0 +1,170 @@
++#pragma once
++#include <string_view>
++
++namespace pt::game {
++// Coffee with Lisa in Romanian (language 14), built into the game: the data pack (extras.pak) has no text/ron.txt, so
++// LisaDate::LoadText takes this when the pack lacks the Romanian file. Generated from the translation's ron.txt.
++inline constexpr std::string_view kRomanianLisaDateText = R"PT_RO(# Coffee with Lisa, Romanian (limba română). key = text
++name_lisa = Lisa
++name_you = Tu
++name_glitch = Lisa
++ui_auto = Auto
++ui_skip = Sari
++ui_affection = Afecțiune
++ui_leave_hold = Ține apăsat pentru a părăsi întâlnirea
++title_1 = Partea 1: Cafea neagră
++title_2 = Partea 2: Două lingurițe de zahăr
++title_3 = Partea 3: Ultima comandă
++ending_good = FINAL BUN: Ne vedem în bucla următoare
++ending_bad = FINAL RĂU: Cafea rece
++ending_true = FINALUL ADEVĂRAT: 204863
++
++intro_01 = (Holul a dispărut. Aici miroase a cafea. A cafea și a ceva foarte vechi.)
++intro_02 = (Aia e... Lisa? De ce zâmbește? De ce STĂ JOS?)
++
++s1_01 = Oh! Chiar ai intrat. Nu intră nimeni niciodată. Toți trec pe lângă mine pe hol. Iar și iar și iar.
++s1_02 = Stai jos, stai jos! Am făcut cafea. Nu știam cum o bei, așa că am făcut-o cum o beau eu.
++s1_03 = Neagră. Ca holul la trei dimineața.
++c1_a = Neagră e perfectă.
++c1_a_r = Vezi? Deja suntem compatibili. Am știut din prima zi în care ai fugit de mine.
++c1_b = Pot să primesc puțin lapte?
++c1_b_r1 = Laptele e în frigider.
++c1_b_r2 = ...Nu deschide frigiderul.
++c1_c = Aud cumva un radio?
++c1_c_r1 = Care radio? Nu e niciun radio. N-a existat niciodată vreun radio.
++c1_c_r2 = Bea-ți cafeaua.
++
++s1_04 = Deci. Observi ceva diferit la mine?
++c2_a = Părul tău arată senzațional.
++c2_a_r = Serios? Îmi ia o veșnicie. Nimeni nu știe cât. Nici măcar eu.
++c2_b = Tu... nu mai vii spre mine, pentru prima dată.
++c2_b_r = Stau jos! M-a învățat o prietenă. Locuiește într-o cadă. O fată drăguță. Nu prea vorbăreață.
++c2_c = L-ai pieptănat cu furculița?
++c2_c_r = O să mă prefac că n-ai zis asta. Mă pricep foarte bine să mă prefac. Întreabă holul.
++
++s1_05 = Nu prea ies din casă. Doctorul meu zice că „tehnic, nu sunt vie”, ceea ce mi se pare un pic cam răutăcios.
++s1_06 = Dar tu? Ce faci toată ziua?
++c3_a = Merg pe un hol. Apoi o iau de la capăt.
++c3_a_r = Și eu! Avem atâtea în comun!
++c3_b = Colecționez bucățele de hârtie.
++c3_b_r = Un colecționar! O ai pe aia cu fața mea? Arăt atât de bine în ea.
++c3_c = Strig „Jack” într-un microfon până sună un telefon.
++c3_c_r = ...Sunt sigură că e ceva foarte normal de unde vii tu.
++
++s1_07 = E plăcut. Normal. Doi oameni care stau jos și beau cafea. Nimeni nu se târăște pe tavan.
++c4_a = Se vorbește foarte ușor cu tine.
++c4_a_r = Încetează. O să-mi facă capul chestia aia.
++c4_b = Tu te târăști pe tavan?
++c4_b_r = Doar în weekend.
++c4_c = Pot să-mi mut scaunul un pic mai departe?
++c4_c_r = ...Oh. Sigur. E prins în șuruburi de podea, dar sigur.
++
++s2_01 = Pot să-ți spun un secret? Când am emoții, capul meu face un pic...
++s2_02 = ...asta.
++c5_a = Sincer, e cam drăguț.
++c5_a_r = Nimeni nu i-a zis niciodată drăguț. De obicei țipă și scapă lanterna.
++c5_b = Te rog, nu mai face niciodată asta.
++c5_b_r = Nu mă pot abține! E ca sughițul. Sughiț bântuit.
++c5_c = De-aia bați în ușa băii?
++c5_c_r = Ușa aia a început.
++
++s2_03 = Bine, un joc! Numărul meu preferat e 2-0-4-8-6-3. Ghicește de ce.
++c6_a = E ziua ta?
++c6_a_r = Nu, prostuțule. E ora. Uită-te la ceas. ...Unde a dispărut ceasul?
++c6_b = 204863 e și numărul meu preferat.
++c6_b_r = ...Nimeni nu ține minte numărul. Nimeni.
++c6_c = E un număr tare ciudat.
++c6_c_r = Zice cel care își numără pașii.
++
++s2_04 = Îți plac copiii?
++c7_a = Sigur, în cantități rezonabile.
++c7_a_r = Rezonabil e bine. Îmi place rezonabil.
++c7_b = Am găsit odată unul într-o chiuvetă.
++c7_b_r = Ah, acolo îi țin. E foarte igienic.
++c7_c = Nu prea.
++c7_c_r = Chiuveta a auzit asta.
++
++s2_05 = Bine. Întrebare grea. Dacă aș fi o lanternă, m-ai ține aproape în întuneric?
++c8_a = Nu te-aș lăsa niciodată din mână.
++c8_a_r = Nici când pâlpâi? ...Ești dulce. Nimeni nu-mi spune niciodată că sunt dulce.
++c8_b = Doar până se termină bateriile.
++c8_b_r = Lanternele din casa asta n-au baterii. Au sentimente.
++c8_c = Tu ai fi cea care mă orbește.
++c8_c_r = E cel mai frumos mod în care mi-a spus cineva vreodată „fața ta mă doare la ochi”.
++
++s2_06 = Mă distrez. Te distrezi? Clipește de două ori dacă te distrezi.
++s2_07 = ...N-ai clipit. Nu clipești niciodată. Interesant.
++
++s3_01 = Se face târziu. Aici e mereu târziu. E târziu de foarte, foarte mult timp.
++s3_02 = Toată lumea pleacă pe ușa de la capătul holului. Și apoi intră înapoi imediat.
++c9_a = Mai rămân puțin.
++c9_a_r = Știam că o să rămâi.
++c9_b = Ar trebui să mă întorc pe hol.
++c9_b_r = Holul tot o să fie acolo. Holul e mereu tot acolo.
++c9_c = Am senzația că am mai fost aici.
++c9_c_r = Zici asta de fiecare dată.
++
++s3_03 = Pot să te întreb ceva? Cum mă cheamă?
++c10_a = Lisa.
++c10_a_r = Ți-ai amintit! Nimeni nu-și amintește. Toți îmi zic doar „chestia din spatele tău”.
++c10_b = Ocho?
++c10_b_r = Așa mi-au zis programatorii. Nu vorbim despre programatori.
++c10_c = Femeia de pe hol?
++c10_c_r = ...Ăsta e jobul meu. Nu numele meu.
++
++s3_04 = Promite-mi ceva. Nu te uita în spate.
++c11_a = Promit.
++c11_a_r = Bine. Nu e nimic acolo. Nu e niciodată nimic acolo.
++c11_b = (Uită-te în spate.)
++c11_b_r1 = (Nu e nimic acolo. Doar o ușă. Acum o secundă nu era acolo.)
++c11_b_r2 = ...Te-ai uitat. De ce se uită toată lumea mereu?
++c11_c = Pot să mă uit pe vizor în schimb?
++c11_c_r = Aici nu e nicio ușă. ...Atunci prin ce te uiți chiar acum?
++
++s3_05 = Ultima întrebare, promit. O să te mai întorci?
++c12_a = Sigur că da.
++c12_a_r = Atunci o să țin cafeaua caldă. Pentru totdeauna, dacă trebuie. Mă pricep la „pentru totdeauna”.
++c12_b = În fiecare buclă.
++c12_b_r = În fiecare buclă. De unde vin eu, asta e practic o căsnicie.
++c12_c = O să închid jocul.
++c12_c_r = Să închizi CE?
++
++good_01 = Putem... putem face o poză? Ca să ținem minte asta. Sunt groaznică la ținut minte lucruri.
++good_02 = Ia uită-te la noi! Tu pari emoționat. Eu arăt... ca mine. E perfect.
++good_03 = O s-o agăț pe hol. Lângă celelalte poze. Așa o să te văd de fiecare dată când treci pe acolo.
++good_04 = Ne vedem în bucla următoare, la aceeași oră? Eu fac cafeaua. Tu aduci lanterna.
++
++bad_01 = Știi ceva? Ești exact ca toți ceilalți.
++bad_02 = Intri. Te uiți în jur. Pleci. Te întorci. Nu rămâi niciodată, dar niciodată.
++bad_03 = Hai să-ți arăt ce se întâmplă cu cei care nu-și termină cafeaua.
++
++true_01 = Le-ai ales intenționat, nu-i așa?
++true_02 = Radioul. Numărul. Bucla. Vizorul. Ai fost atent.
++true_03 = Așa că o să fiu sinceră cu tine. Nu cu bărbatul de pe hol. Cu TINE.
++true_04 = Camera asta nu e reală. Cafeaua nu e reală. A pictat-o cineva. Nici măcar nu stau cu adevărat jos. Poza asta au împrumutat-o de la o cadă.
++true_05 = Dar tu ești real. Chiar acum ții ceva în mâini, într-o cameră pe care eu n-o văd. Și acolo e întuneric?
++true_06 = Te-am privit cum mergi pe holul ăla. Iar. Și iar. Ai deschis aceeași ușă de atâtea ori.
++true_07 = Nu-ți face griji. Nu-ți ating salvarea. Nu sunt genul ăla de fată.
++true_08 = Voiam doar o cafea cu cineva care să se uite și el la mine.
++true_09 = Bine. Întoarce-te acum. Holului îi e dor de tine. Și radioul mai are ceva să-ți spună.
++true_10 = Și dacă sună un telefon... lasă-l să mai sune puțin. Pentru mine.
++
++# the selfie (script `selfie`): her reaction to the faces in the photo, the photo mode panel, the saved photo, the music notice
++selfie_both_grin = Ia uită-te la noi! Două zâmbete până la urechi. Nu știam că fața ta poate face asta. O păstrez pentru totdeauna.
++selfie_both_grumpy = Ia uită-te la noi. Două fețe îmbufnate la o cafea. E cea mai sinceră poză pe care o am. E perfectă.
++selfie_she_smiles = Eu zâmbesc, iar tu te încrunți. Toată lumea o să creadă că eu sunt cea drăguță. În sfârșit.
++selfie_you_smile = Tu rânjești, iar eu mă uit urât. Bine. Acum o să știe toți cine e șefa aici.
++ui_selfie = Selfie
++ui_selfie_face = Expresie
++ui_selfie_tilt = Înclinarea capului
++ui_selfie_take = Fă poza
++ui_face_grumpy = Îmbufnat
++ui_face_frown = Încruntat
++ui_face_neutral = Neutru
++ui_face_smile = Zâmbet
++ui_face_grin = Zâmbet larg
++ui_photo_saved = Poză salvată: {file}
++ui_photo_failed = Poza nu a putut fi salvată
++ui_hint_menu = Meniu
++)PT_RO";
++}
 diff --git a/src/game/save_data.cpp b/src/game/save_data.cpp
 index acf18c6..f690389 100644
 --- a/src/game/save_data.cpp
@@ -314,10 +511,10 @@ index eb29db8..0f6df27 100644
      void Init(Vfs& vfs) { vfs_ = &vfs; }
      void SetLanguage(int language);
 diff --git a/src/game/ui/ui_assets.h b/src/game/ui/ui_assets.h
-index 4ea7a7c..840625f 100644
+index 8c890c7..ee2dbbf 100644
 --- a/src/game/ui/ui_assets.h
 +++ b/src/game/ui/ui_assets.h
-@@ -59,8 +59,8 @@ struct UiFont {
+@@ -60,8 +60,8 @@ struct UiFont {
  
  class UiAssets {
  public:
@@ -343,18 +540,29 @@ index 4319edb..b7395bf 100644
      expect("zh-TW", true, 0);
      expect("zh-Hant-HK", true, 0);
 diff --git a/tests/lisa_date_test.cpp b/tests/lisa_date_test.cpp
-index ddf959b..aab6ac6 100644
+index 3954f8e..ea53bf6 100644
 --- a/tests/lisa_date_test.cpp
 +++ b/tests/lisa_date_test.cpp
-@@ -285,7 +285,7 @@ int main() {
+@@ -4,6 +4,7 @@
+ #include "engine/fs/data_pack.h"
+ #include "game/lisa_date/lisa_date_audio.h"
+ #include "game/lisa_date/lisa_date_hints.h"
++#include "game/lisa_date/lisa_date_romanian.h"
+ #include "game/lisa_date/lisa_date_script.h"
+ 
+ #include <algorithm>
+@@ -346,8 +347,9 @@ int main() {
      }
      assert(missing == 0);
      for (const auto& [key, text] : tur) assert(eng.contains(key));
 -    for (const char* code : {"tur", "fra", "deu", "spa", "jpn", "ita", "por", "zhs", "ara", "rus", "ukr", "ces", "pol"}) {
+-        const auto table = LisaDateScript::ParseText(Read(dir / "text" / (std::string(code) + ".txt")));
 +    for (const char* code : {"tur", "fra", "deu", "spa", "jpn", "ita", "por", "zhs", "ara", "rus", "ukr", "ces", "pol", "ron"}) {
-         const auto table = LisaDateScript::ParseText(Read(dir / "text" / (std::string(code) + ".txt")));
++        const auto table = LisaDateScript::ParseText(std::string_view(code) == "ron" ? std::string(pt::game::kRomanianLisaDateText)
++                                                                                    : Read(dir / "text" / (std::string(code) + ".txt")));
          for (const auto& [key, text] : eng) {
              if (!table.contains(key) || table.at(key).empty()) std::printf("%s.txt lacks %s\n", code, key.c_str());
+             assert(table.contains(key) && !table.at(key).empty());
 diff --git a/tests/localization_test.cpp b/tests/localization_test.cpp
 index 53338f5..db789e9 100644
 --- a/tests/localization_test.cpp

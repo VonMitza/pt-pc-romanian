@@ -36,7 +36,7 @@ Descarcă din **Releases** traducerea:
 
 1. Deschide folderul jocului. Implicit e `%LocalAppData%\Programs\P.T. PC Port` (poți lipi calea direct în bara de adrese din Explorer).
 2. Redenumește `pt.exe` existent în **`pt.exe.original`**, ca să-l ai ca rezervă.
-3. Copiază din arhiva traducerii `pt.exe` și folderul `lisa_date` în folderul jocului. Când Windows întreabă, alege **Înlocuiește fișierele**: în `lisa_date` se adaugă doar `text\ron.txt`.
+3. Copiază `pt.exe` din arhiva traducerii în folderul jocului.
 
 **4. Alege limba română**
 
@@ -47,16 +47,16 @@ Salvările și setările tale (folderul `data`) rămân neatinse.
 ## Bine de știut
 
 - **Doar pentru Windows** (10 sau 11, 64-bit).
-- **Doar pentru versiunea 1.0.7.** Când apare o versiune nouă a portului, instalează-o din proiectul original și așteaptă traducerea actualizată de aici. Un `pt.exe` vechi peste un joc nou (sau invers) poate să nu pornească.
+- **Doar pentru versiunea 1.0.8.** Când apare o versiune nouă a portului, instalează-o din proiectul original și așteaptă traducerea actualizată de aici. Un `pt.exe` vechi peste un joc nou (sau invers) poate să nu pornească.
 - **Actualizarea din joc** (Setări PC → Actualizează jocul) instalează versiunea oficială, în engleză, peste traducere. După o actualizare, descarcă și traducerea nouă de aici.
 - **Dezinstalare:** șterge `pt.exe` și redenumește `pt.exe.original` înapoi în `pt.exe`, sau reinstalează jocul din proiectul original.
 - Windows SmartScreen poate avertiza că fișierul nu e semnat. E normal pentru un `pt.exe` compilat de comunitate. Fișierul e compilat public, de GitHub, iar amprenta lui apare în descrierea Release-ului.
 
 ## Detalii tehnice
 
-- Compilat automat de GitHub Actions din codul oficial al portului, versiunea `v1.0.7`, cu traducerea aplicată peste. Sursa publică a versiunii 1.0.7 nu include trei fișiere care nu fac parte din `pt.exe` (DLL-ul pentru DLSS 5 și instrumentul care generează shaderele DirectX 12). De aceea, acestea rămân cele din instalarea oficială.
+- Compilat automat de GitHub Actions din codul oficial al portului, versiunea `v1.0.8`, cu traducerea aplicată peste.
 - Amprenta SHA-256 a fiecărui `pt.exe` se află în descrierea Release-ului.
-- Toate textele traducerii sunt în [`traducere/romanian_text.h`](traducere/romanian_text.h), iar cele pentru „O cafea cu Lisa” în [`traducere/ron.txt`](traducere/ron.txt). Restul modificărilor (româna adăugată în lista de limbi) sunt în [`traducere/romana-1.0.7.patch`](traducere/romana-1.0.7.patch).
+- Toate textele traducerii sunt în [`traducere/romanian_text.h`](traducere/romanian_text.h), iar cele pentru „O cafea cu Lisa” în [`traducere/ron.txt`](traducere/ron.txt) (sunt incluse în `pt.exe`). Restul modificărilor (româna adăugată în lista de limbi) sunt în [`traducere/romana-1.0.8.patch`](traducere/romana-1.0.8.patch).
 
 ## Mulțumiri
 

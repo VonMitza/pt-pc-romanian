@@ -1,8 +1,7 @@
 P.T. PC Port {{VERSION}} - Traducere în limba română
 ====================================================
 
-Această arhivă conține DOAR traducerea în română (pt.exe și folderul lisa_date),
-nu jocul.
+Această arhivă conține DOAR traducerea în română (fișierul pt.exe), nu jocul.
 
 ÎNAINTE DE TOATE
 ----------------
@@ -17,8 +16,7 @@ INSTALARE
       %LocalAppData%\Programs\P.T. PC Port
    (poți lipi calea direct în bara de adrese din Explorer)
 2. Redenumește pt.exe existent în pt.exe.original, ca să-l ai ca rezervă.
-3. Copiază pt.exe și folderul lisa_date din această arhivă în folderul
-   jocului. Când Windows întreabă, alege Înlocuiește fișierele.
+3. Copiază pt.exe din această arhivă în folderul jocului.
 4. Pornește jocul: Opțiuni -> Subtitrări -> Română.
 
 Salvările și setările tale (folderul data) rămân neatinse.
@@ -26,7 +24,6 @@ Salvările și setările tale (folderul data) rămân neatinse.
 DEZINSTALARE
 ------------
 Șterge pt.exe și redenumește pt.exe.original înapoi în pt.exe.
-Poți șterge și fișierul lisa_date\text\ron.txt.
 
 BINE DE ȘTIUT
 -------------
